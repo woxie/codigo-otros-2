@@ -1,8 +1,8 @@
-var formulario = document.querySelector("#form")
+var formulario = document.querySelector("form") // Estaba mal el tipo de elemento, no es un id
 
 formulario.onsubmit = function(e) {
 
-  e.prevent();
+  e.preventDefault(); // Estaba mal escrito el método
   
   var n = formulario.elements[0]
   var e = formulario.elements[1]
@@ -19,23 +19,30 @@ formulario.onsubmit = function(e) {
   if (nombre.length === 0) {
     n.classList.add("error")
   }
+  else{
+    n.classList.remove("error") // Faltaba añadir este else para que el fondo se revierta a blanco si cumple la condición
+  }
   if (edad < 18 || edad > 120) {
     e.classList.add("error")
   }
+  else{
+    e.classList.remove("error") // Faltaba añadir este else para que el fondo se revierta a blanco si cumple la condición
+  }
 
 if (nombre.length > 0 
-  && (edad > 18 
+  && (edad >= 18 // Faltaba el mayor igual para contemplar si tiene 18 años
     && edad < 120) ) {
   agregarInvitado(nombre, edad, nacionalidad)
   }
 }
 
-var botonBorrar = document.createElement("button")
-botonBorrar.textContent = "Eliminar invitado"
-botonBorrar.id = "boton-borrar"
-var corteLinea = document.createElement("br")
-document.body.appendChild(corteLinea)
-document.body.appendChild(botonBorrar);
+// Todo este fragmento de código está de más
+// var botonBorrar = document.createElement("button")
+// botonBorrar.textContent = "Eliminar invitado"
+// botonBorrar.id = "boton-borrar"
+// var corteLinea = document.createElement("br")
+// document.body.appendChild(corteLinea)
+// document.body.appendChild(botonBorrar);
 
 function agregarInvitado(nombre, edad, nacionalidad) {
 
@@ -55,17 +62,18 @@ function agregarInvitado(nombre, edad, nacionalidad) {
 var lista = document.getElementById("lista-de-invitados")
 
 var elementoLista = document.createElement("div")
-elementoLista.classList.added("elemento-lista")
+elementoLista.classList.add("elemento-lista") // "add" estaba escrito en pretérito
 lista.appendChild(elementoLista)
 
-var spanNombre = document.createElement("span")
-var inputNombre = document.createElement("input")
-var espacio = document.createElement("br")
-spanNombre.textContent = "Nombre: "
-inputNombre.value = nombre 
-elementoLista.appendChild(spanNombre)
-elementoLista.appendChild(inputNombre)
-elementoLista.appendChild(espacio)
+// Todo este fragmento de código está de más
+// var spanNombre = document.createElement("span")
+// var inputNombre = document.createElement("input")
+// var espacio = document.createElement("br")
+// spanNombre.textContent = "Nombre: "
+// inputNombre.value = nombre 
+// elementoLista.appendChild(spanNombre)
+// elementoLista.appendChild(inputNombre)
+// elementoLista.appendChild(espacio)
 
 function crearElemento(descripcion, valor) {
 var spanNombre = document.createElement("span")
